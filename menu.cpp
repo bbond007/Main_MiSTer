@@ -4893,7 +4893,16 @@ void HandleUI(void)
 				else if (menusub == 12)
 				{
 					menustate = MENU_NONE1;
-					minimig_reset();
+					if (strcasestr(get_rbf_name(), "_Hybrid") != NULL)
+					{
+						sprintf(s, "%s/68000.sh STOP", getFullPath(user_io_get_core_path()));
+						system(s);
+                                                minimig_reset();
+                                                sprintf(s, "%s/68000.sh START", getFullPath(user_io_get_core_path()));
+                                                system(s);
+					}
+					else
+						minimig_reset();
 				}
 				else if (menusub == 13)
 				{
